@@ -1,0 +1,126 @@
+/* 基础变量与主题 */
+:root {
+  --bg: #ffffff;
+  --text: #1f2328;
+  --muted: #5e6a75;
+  --card: #f6f8fa;
+  --line: #e6e8eb;
+  --accent: #1a73e8;
+  --accent-weak: #e7f0fe;
+}
+[data-theme="dark"] {
+  --bg: #0f141a;
+  --text: #e6edf3;
+  --muted: #9aa6b2;
+  --card: #111827;
+  --line: #1f2937;
+  --accent: #62a0ff;
+  --accent-weak: #0b2a57;
+}
+
+/* 全局样式 */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font: 500 16px/1.65 system-ui, -apple-system, Segoe UI, Roboto, Noto Sans SC, Helvetica, Arial, sans-serif;
+  letter-spacing: 0.1px;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+.container {
+  width: min(960px, 94vw);
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+/* 头部 */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in oklab, var(--bg) 85%, transparent);
+  backdrop-filter: saturate(160%) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  gap: 16px;
+}
+.identity { display: flex; align-items: center; gap: 14px; }
+.avatar {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: var(--accent);
+  color: #fff; display: grid; place-items: center;
+  font-weight: 800; letter-spacing: 2px;
+}
+.who .name { margin: 0; font-size: 22px; line-height: 1.2; }
+.who .title { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+
+.header-actions { display: flex; gap: 10px; }
+.btn {
+  border: 1px solid var(--line);
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn.ghost {
+  background: transparent; color: var(--text);
+}
+.btn:hover { filter: brightness(1.03); }
+
+/* 顶部信息 */
+.top-meta { margin: 24px 0; }
+.contact {
+  display: flex; flex-wrap: wrap; gap: 12px 18px;
+  list-style: none; padding: 0; margin: 0 0 12px;
+  color: var(--muted);
+}
+.summary { margin: 0; background: var(--card); border: 1px solid var(--line); padding: 14px 16px; border-radius: 12px; }
+
+/* 章节与条目 */
+section { margin: 26px 0 18px; }
+h2 { font-size: 18px; margin: 0 0 10px; }
+h3 { font-size: 16px; margin: 0 0 6px; }
+.item {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 10px 0;
+}
+.item .meta { color: var(--muted); font-size: 14px; }
+.item ul { margin: 8px 0 0 18px; }
+
+/* 技能网格 */
+.skills {
+  display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.skills > div { background: var(--card); border: 1px solid var(--line); padding: 12px; border-radius: 12px; }
+.list-inline { display: flex; flex-wrap: wrap; gap: 8px 14px; padding: 0; margin: 0; list-style: none; }
+
+/* 页脚 */
+.site-footer { border-top: 1px solid var(--line); margin-top: 28px; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; color: var(--muted); }
+
+/* 打印优化 */
+@media print {
+  :root { --bg: #ffffff; --text: #000; --muted: #333; --line: #ddd; }
+  .site-header, .site-footer, #themeToggle, #printBtn { display: none !important; }
+  body { background: #fff; }
+  a { color: #000; text-decoration: none; }
+  .item, .summary { break-inside: avoid; }
+}
+
